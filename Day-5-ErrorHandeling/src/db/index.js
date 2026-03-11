@@ -10,17 +10,9 @@ const connectDB = async () => {
     console.log(
       `\n MongoDB connected !! DB Host : ${connectionInstance.connection.host}`
     );
-    // console.log(connectionInstance);
   } catch (error) {
     console.error("MongoDB Connection Failed", error);
     process.exit(1);
   }
 };
 export default connectDB;
-//  mongoose give a return object
-
-
-// 2 important things to remember when dealing with DB: - 
-
-// 1) DB is in another continent. 
-// 2) Use try-catch block when dealing with async-await 
