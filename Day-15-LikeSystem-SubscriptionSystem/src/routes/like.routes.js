@@ -11,10 +11,13 @@ import { verifyJWT } from "../middlewares/auth.middleware.js";
 const router = Router();
 
 router.use(verifyJWT); 
-
-router.route("/toggle/v/:videoId").post(toggleVideoLike);       // like/unlike video
-router.route("/toggle/c/:commentId").post(toggleCommentLike);   // like/unlike comment
-router.route("/video/:videoId").get(getVideoLikes);             // get total likes on video
-router.route("/videos").get(getLikedVideos);                    // get all liked videos
+// like/unlike video
+router.route("/toggle/v/:videoId").post(toggleVideoLike);    
+// like/unlike comment   
+router.route("/toggle/c/:commentId").post(toggleCommentLike);
+ // get total likes on video   
+router.route("/video/:videoId").get(getVideoLikes);    
+// get all liked videos        
+router.route("/videos").get(getLikedVideos);                    
 
 export default router;

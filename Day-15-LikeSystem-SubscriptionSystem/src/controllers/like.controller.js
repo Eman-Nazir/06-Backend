@@ -6,31 +6,28 @@ import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 
-// ─────────────────────────────────────────
 // TOGGLE LIKE ON VIDEO
-// ─────────────────────────────────────────
+
 const toggleVideoLike = asyncHandler(async (req, res) => {
   const { videoId } = req.params;
 
-  // check video exists
   const video = await Video.findById(videoId);
   if (!video) throw new ApiError(404, "Video not found");
 
-  // check if already liked
   const existingLike = await Like.findOne({
     video: videoId,
     likedBy: req.user._id,
   });
 
   if (existingLike) {
-    // already liked → unlike
     await Like.findByIdAndDelete(existingLike._id);
     return res
       .status(200)
-      .json(new ApiResponse(200, { isLiked: false }, "Video unliked successfully"));
+      .json(
+        new ApiResponse(200, { isLiked: false }, "Video unliked successfully")
+      );
   }
 
-  // not liked → like
   await Like.create({
     video: videoId,
     likedBy: req.user._id,
@@ -41,31 +38,28 @@ const toggleVideoLike = asyncHandler(async (req, res) => {
     .json(new ApiResponse(200, { isLiked: true }, "Video liked successfully"));
 });
 
-// ─────────────────────────────────────────
 // TOGGLE LIKE ON COMMENT
-// ─────────────────────────────────────────
+
 const toggleCommentLike = asyncHandler(async (req, res) => {
   const { commentId } = req.params;
 
-  // check comment exists
   const comment = await Comment.findById(commentId);
   if (!comment) throw new ApiError(404, "Comment not found");
 
-  // check if already liked
   const existingLike = await Like.findOne({
     comment: commentId,
     likedBy: req.user._id,
   });
 
   if (existingLike) {
-    // already liked → unlike
     await Like.findByIdAndDelete(existingLike._id);
     return res
       .status(200)
-      .json(new ApiResponse(200, { isLiked: false }, "Comment unliked successfully"));
+      .json(
+        new ApiResponse(200, { isLiked: false }, "Comment unliked successfully")
+      );
   }
 
-  // not liked → like
   await Like.create({
     comment: commentId,
     likedBy: req.user._id,
@@ -73,22 +67,21 @@ const toggleCommentLike = asyncHandler(async (req, res) => {
 
   return res
     .status(200)
-    .json(new ApiResponse(200, { isLiked: true }, "Comment liked successfully"));
+    .json(
+      new ApiResponse(200, { isLiked: true }, "Comment liked successfully")
+    );
 });
 
-// ─────────────────────────────────────────
 // GET TOTAL LIKES ON A VIDEO
-// ─────────────────────────────────────────
+
 const getVideoLikes = asyncHandler(async (req, res) => {
   const { videoId } = req.params;
 
   const video = await Video.findById(videoId);
   if (!video) throw new ApiError(404, "Video not found");
 
-  // count total likes
   const totalLikes = await Like.countDocuments({ video: videoId });
 
-  // check if current user liked it
   const isLiked = await Like.findOne({
     video: videoId,
     likedBy: req.user._id,
@@ -99,16 +92,14 @@ const getVideoLikes = asyncHandler(async (req, res) => {
       200,
       {
         totalLikes,
-        isLiked: !!isLiked, // true or false
+        isLiked: !!isLiked,
       },
       "Video likes fetched successfully"
     )
   );
 });
 
-// ─────────────────────────────────────────
 // GET ALL VIDEOS LIKED BY USER
-
 
 const getLikedVideos = asyncHandler(async (req, res) => {
   const likedVideos = await Like.aggregate([
@@ -125,7 +116,16 @@ const getLikedVideos = asyncHandler(async (req, res) => {
         foreignField: "_id",
         as: "videoDetails",
         pipeline: [
-          { $project: { title: 1, thumbnail: 1, duration: 1, views: 1, createdAt: 1, owner: 1 } },
+          {
+            $project: {
+              title: 1,
+              thumbnail: 1,
+              duration: 1,
+              views: 1,
+              createdAt: 1,
+              owner: 1,
+            },
+          },
         ],
       },
     },
@@ -151,12 +151,9 @@ const getLikedVideos = asyncHandler(async (req, res) => {
 
   return res
     .status(200)
-    .json(new ApiResponse(200, likedVideos, "Liked videos fetched successfully"));
+    .json(
+      new ApiResponse(200, likedVideos, "Liked videos fetched successfully")
+    );
 });
 
-export {
-  toggleVideoLike,
-  toggleCommentLike,
-  getVideoLikes,
-  getLikedVideos,
-};
+export { toggleVideoLike, toggleCommentLike, getVideoLikes, getLikedVideos };
