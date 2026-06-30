@@ -1,11 +1,11 @@
 {
-  "name": "day-15-likesystem-subscriptionsystem",
+  "name": "day-16-emailnotifications-otpverification",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "npx nodemon -r dotenv/config src/index.js"
-  },
+  "dev": "nodemon src/index.js"
+},
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -22,7 +22,8 @@
     "jsonwebtoken": "^9.0.3",
     "mongoose": "^9.7.3",
     "mongoose-aggregate-paginate-v2": "^1.1.4",
-    "multer": "^2.2.0"
+    "multer": "^2.2.0",
+    "nodemailer": "^9.0.1"
   },
   "devDependencies": {
     "nodemon": "^3.1.14"
