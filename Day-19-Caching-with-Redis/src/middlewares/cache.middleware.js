@@ -3,10 +3,8 @@ import redis from "../utils/redis.js";
 const cacheMiddleware = (expirySeconds = 3600) => {
   return async (req, res, next) => {
     try {
-      // create unique key from route + query params
       const cacheKey = `cache:${req.originalUrl}`;
 
-      // check if data exists in redis
       const cachedData = await redis.get(cacheKey);
 
       if (cachedData) {
@@ -20,11 +18,9 @@ const cacheMiddleware = (expirySeconds = 3600) => {
         });
       }
 
-      // not in cache → store original json function
       console.log("Cache miss:", cacheKey);
       const originalJson = res.json.bind(res);
 
-      // override res.json to cache the response
       res.json = async (body) => {
         // only cache successful responses
         if (body.success) {
@@ -39,12 +35,11 @@ const cacheMiddleware = (expirySeconds = 3600) => {
       next();
     } catch (error) {
       console.log("Cache error:", error.message);
-      next(); // if cache fails → continue normally
+      next(); 
     }
   };
 };
 
-// clear cache for a specific key
 const clearCache = async (pattern) => {
   try {
     const keys = await redis.keys(`cache:${pattern}`);

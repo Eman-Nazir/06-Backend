@@ -182,7 +182,6 @@ const getVideoById = asyncHandler(async (req, res) => {
 // UPDATE VIDEO
 
 
-// UPDATE VIDEO
 const updateVideo = asyncHandler(async (req, res) => {
   const { videoId } = req.params;
   const { title, description } = req.body;
