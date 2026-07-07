@@ -1,12 +1,12 @@
 {
   "name": "day-15-likesystem-subscriptionsystem",
   "version": "1.0.0",
-  "description": "",
+  "description": "Like and subscription system with toggle logic and aggregation feeds",
   "main": "index.js",
   "scripts": {
     "dev": "npx nodemon -r dotenv/config src/index.js"
   },
-  
+
   "keywords": [],
   "author": "",
   "license": "ISC",
