@@ -10,7 +10,7 @@ const extractPublicId = (cloudinaryUrl) => {
   return folder.startsWith("v") ? filename : `${folder}/${filename}`;
 };
 
-// JOB 1 - clean expired OTPs
+// JOB 1 clean expired OTPs
 const cleanupExpiredOTPs = async () => {
   try {
     const result = await User.updateMany(
@@ -31,7 +31,7 @@ const cleanupExpiredOTPs = async () => {
   }
 };
 
-// JOB 2 - clean expired password reset tokens
+// JOB 2  clean expired password reset tokens
 const cleanupExpiredResetTokens = async () => {
   try {
     const result = await User.updateMany(
@@ -52,7 +52,7 @@ const cleanupExpiredResetTokens = async () => {
   }
 };
 
-// JOB 3 - permanently delete soft deleted videos after 30 days
+// JOB 3  permanently delete soft deleted videos after 30 days
 const cleanupTrashedVideos = async () => {
   try {
     const thirtyDaysAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000);
@@ -74,7 +74,7 @@ const cleanupTrashedVideos = async () => {
   }
 };
 
-// JOB 4 - auto logout users inactive for 30 days
+// JOB 4  auto logout users inactive for 30 days
 const expireInactiveSessions = async () => {
   try {
     const thirtyDaysAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000);
@@ -96,7 +96,7 @@ const expireInactiveSessions = async () => {
   }
 };
 
-// JOB 5 - find inactive users for re-engagement
+// JOB 5  find inactive users for re-engagement
 const findInactiveUsers = async () => {
   try {
     const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);

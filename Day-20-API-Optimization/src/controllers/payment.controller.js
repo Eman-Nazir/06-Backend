@@ -31,7 +31,10 @@ const createCheckoutSession = asyncHandler(async (req, res) => {
         quantity: 1,
       },
     ],
+
     // where to redirect after payment
+
+    // this page actually not exist 
     success_url: `${process.env.FRONTEND_URL}/payment/success?session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: `${process.env.FRONTEND_URL}/payment/cancel`,
     metadata: {

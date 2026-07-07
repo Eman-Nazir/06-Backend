@@ -28,7 +28,8 @@ const sendOTP = asyncHandler(async (req, res) => {
   const otp = generateOTP();
   // save OTP in DB with 10 min expiry
   user.otp = otp;
-  user.otpExpiry = new Date(Date.now() + 10 * 60 * 1000); // 10 minutes
+  user.otpExpiry = new Date(Date.now() + 10 * 60 * 1000); 
+  // 10 minutes
   await user.save({ validateBeforeSave: false });
 
   try {
@@ -95,6 +96,7 @@ const verifyOTP = asyncHandler(async (req, res) => {
     .status(200)
     .json(new ApiResponse(200, {}, "Email verified successfully"));
 });
+
 
 // FORGOT PASSWORD  send reset link
 

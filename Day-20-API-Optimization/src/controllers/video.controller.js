@@ -9,7 +9,6 @@ import {
 } from "../utils/cloudinary.js";
 import { clearCache } from "../middlewares/cache.middleware.js";
 
-// extract publicId from cloudinary url
 const extractPublicId = (cloudinaryUrl) => {
   const parts = cloudinaryUrl.split("/");
   const filename = parts[parts.length - 1].split(".")[0];

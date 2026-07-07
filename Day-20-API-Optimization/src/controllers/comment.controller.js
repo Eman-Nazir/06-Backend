@@ -5,9 +5,9 @@ import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 
-// ─────────────────────────────────────────
+
 // GET ALL COMMENTS FOR A VIDEO
-// ─────────────────────────────────────────
+
 const getVideoComments = asyncHandler(async (req, res) => {
   const { videoId } = req.params;
   const { page = 1, limit = 10 } = req.query;
@@ -17,7 +17,7 @@ const getVideoComments = asyncHandler(async (req, res) => {
   }
 
   const pipeline = [
-    // get comments for this video only
+    
     {
       $match: {
         video: new mongoose.Types.ObjectId(videoId),
@@ -62,9 +62,9 @@ const getVideoComments = asyncHandler(async (req, res) => {
     .json(new ApiResponse(200, comments, "Comments fetched successfully"));
 });
 
-// ─────────────────────────────────────────
+
 // ADD COMMENT
-// ─────────────────────────────────────────
+
 const addComment = asyncHandler(async (req, res) => {
   const { videoId } = req.params;
   const { content } = req.body;
@@ -94,9 +94,9 @@ const addComment = asyncHandler(async (req, res) => {
     .json(new ApiResponse(201, comment, "Comment added successfully"));
 });
 
-// ─────────────────────────────────────────
+
 // UPDATE COMMENT
-// ─────────────────────────────────────────
+
 const updateComment = asyncHandler(async (req, res) => {
   const { commentId } = req.params;
   const { content } = req.body;
@@ -130,9 +130,9 @@ const updateComment = asyncHandler(async (req, res) => {
     .json(new ApiResponse(200, updatedComment, "Comment updated successfully"));
 });
 
-// ─────────────────────────────────────────
+
 // DELETE COMMENT
-// ─────────────────────────────────────────
+
 const deleteComment = asyncHandler(async (req, res) => {
   const { commentId } = req.params;
 
