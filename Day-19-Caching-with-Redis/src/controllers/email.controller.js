@@ -7,7 +7,7 @@ import { ApiResponse } from "../utils/ApiResponse.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { sendOTPEmail, sendPasswordResetEmail } from "../utils/mailer.js";
 
-// GENERATE OTP  6 digit random number
+
 
 const generateOTP = () => {
   return Math.floor(100000 + Math.random() * 900000).toString();
@@ -28,7 +28,8 @@ const sendOTP = asyncHandler(async (req, res) => {
   const otp = generateOTP();
   // save OTP in DB with 10 min expiry
   user.otp = otp;
-  user.otpExpiry = new Date(Date.now() + 10 * 60 * 1000); // 10 minutes
+  user.otpExpiry = new Date(Date.now() + 10 * 60 * 1000); 
+  // 10 minutes
   await user.save({ validateBeforeSave: false });
 
   try {
