@@ -20,8 +20,8 @@ describe("Auth Routes", () => {
       const response = await request(app)
         .post("/api/v1/users/login")
         .send({
-          email: "@gmail.com",  //  real email in DB 
-          password: "",             //  real password 
+          email: "eman406261@gmail.com",  //  real email in DB 
+          password: "eman123",             //  real password 
         });
 
       expect(response.status).toBe(200);
@@ -36,7 +36,7 @@ describe("Auth Routes", () => {
       const response = await request(app)
         .post("/api/v1/users/login")
         .send({
-          email: "@gmail.com",  //  real email  that exist in db 
+          email: "eman406261@gmail.com",  //  real email  that exist in db 
           password: "wrongpassword123",    //  wrong password intentionally
         });
 
