@@ -17,7 +17,7 @@ beforeAll(async () => {
     });
 
   token = response.body.data?.accessToken;
-});
+},40000);
 
 afterAll(async () => {
   await mongoose.disconnect();
