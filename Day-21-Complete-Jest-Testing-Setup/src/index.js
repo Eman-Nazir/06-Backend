@@ -2,7 +2,7 @@ import "dotenv/config";
 import connectDB from "./db/index.js";
 import { app } from "./app.js";
 
-// ✅ add test route directly here
+//  add test route directly here
 app.get("/test-compression", (req, res) => {
   const data = { message: "test ".repeat(500) };
   res.json(data);
