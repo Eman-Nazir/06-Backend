@@ -52,7 +52,6 @@ app.get("/test-compression", (req, res) => {
   res.json(data);
 });
 
-// routes declaration
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/videos", videoRouter);
 app.use("/api/v1/comments", commentRouter);
@@ -61,7 +60,6 @@ app.use("/api/v1/subscriptions", subscriptionRouter);
 app.use("/api/v1/payment", paymentRouter);
 app.use("/api/v1/email", emailRouter);
 
-// global error handler
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
   const message = err.message || "Internal Server Error";
