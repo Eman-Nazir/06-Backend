@@ -1,6 +1,6 @@
-# 100 Days of Backend Development
+# Backend Development Journey | #100DaysOfWebDevelopment
 
-A complete backend learning journey — from Node.js fundamentals to a fully deployed, production-ready REST API. Each folder represents one stage of progressive learning, building toward the final VideoApp Backend project.
+This repository documents the backend portion of my #100DaysOfWebDevelopment journey. It covers my progression from Node.js fundamentals to building and deploying a production-ready REST API using Express.js, MongoDB, Redis, JWT authentication, Cloudinary, Stripe, Nodemailer, and Swagger.
 
 ## Final Project
 
