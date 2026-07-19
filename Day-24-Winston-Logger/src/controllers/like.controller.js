@@ -5,6 +5,8 @@ import { Comment } from "../models/comment.model.js";
 import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
+import logger from "../utils/logger.js";
+
 
 // TOGGLE LIKE ON VIDEO
 
@@ -21,6 +23,7 @@ const toggleVideoLike = asyncHandler(async (req, res) => {
 
   if (existingLike) {
     await Like.findByIdAndDelete(existingLike._id);
+      logger.info(`Video unliked: ${videoId} by user: ${req.user._id}`); 
     return res
       .status(200)
       .json(
@@ -33,6 +36,8 @@ const toggleVideoLike = asyncHandler(async (req, res) => {
     likedBy: req.user._id,
   });
 
+
+  logger.info(`Video liked: ${videoId} by user: ${req.user._id}`); 
   return res
     .status(200)
     .json(new ApiResponse(200, { isLiked: true }, "Video liked successfully"));
@@ -53,6 +58,9 @@ const toggleCommentLike = asyncHandler(async (req, res) => {
 
   if (existingLike) {
     await Like.findByIdAndDelete(existingLike._id);
+    
+    logger.info(`Comment unliked: ${commentId} by user: ${req.user._id}`);
+    
     return res
       .status(200)
       .json(
@@ -64,6 +72,8 @@ const toggleCommentLike = asyncHandler(async (req, res) => {
     comment: commentId,
     likedBy: req.user._id,
   });
+
+  logger.info(`Comment liked: ${commentId} by user: ${req.user._id}`);
 
   return res
     .status(200)

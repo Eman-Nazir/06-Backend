@@ -2,7 +2,7 @@ import Stripe from "stripe";
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
-
+import logger from "../utils/logger.js"; 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 
@@ -39,6 +39,9 @@ const createCheckoutSession = asyncHandler(async (req, res) => {
       planName,
     },
   });
+
+
+  logger.info(`Checkout session created for user: ${req.user._id}, plan: ${planName}`); 
 
   return res.status(200).json(
     new ApiResponse(

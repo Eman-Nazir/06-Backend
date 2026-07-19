@@ -95,18 +95,7 @@ logger.info(`Comment added on video: ${videoId} by user: ${req.user._id}`);
     .json(new ApiResponse(201, comment, "Comment added successfully"));
 });
 
-// UPDATE COMMENT
-const updatedComment = await Comment.findByIdAndUpdate(
-  commentId,
-  { $set: { content } },
-  { new: true }
-);
 
-logger.info(`Comment updated: ${commentId} by user: ${req.user._id}`); 
-
-return res
-  .status(200)
-  .json(new ApiResponse(200, updatedComment, "Comment updated successfully"));
 
 // DELETE COMMENT
 const deleteComment = asyncHandler(async (req, res) => {
@@ -138,7 +127,47 @@ const deleteComment = asyncHandler(async (req, res) => {
     .status(200)
     .json(new ApiResponse(200, {}, "Comment deleted successfully"));
 });
+// UPDATE COMMENT
+const updateComment = asyncHandler(async (req, res) => {
+  const { commentId } = req.params;
+  const { content } = req.body;
 
+  if (!isValidObjectId(commentId)) {
+    throw new ApiError(400, "Invalid commentId");
+  }
+
+  if (!content?.trim()) {
+    throw new ApiError(400, "Comment content is required");
+  }
+
+  const updatedComment = await Comment.findByIdAndUpdate(
+    commentId,
+    {
+      $set: { content },
+    },
+    {
+      new: true,
+    }
+  );
+
+  if (!updatedComment) {
+    throw new ApiError(404, "Comment not found");
+  }
+
+  logger.info(
+    `Comment updated: ${commentId} by user: ${req.user._id}`
+  );
+
+  return res
+    .status(200)
+    .json(
+      new ApiResponse(
+        200,
+        updatedComment,
+        "Comment updated successfully"
+      )
+    );
+});
 export {
   getVideoComments,
   addComment,

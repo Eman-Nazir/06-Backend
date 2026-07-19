@@ -4,6 +4,8 @@ import { User } from "../models/user.model.js";
 import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
+import logger from "../utils/logger.js";
+
 
 // TOGGLE SUBSCRIPTION
 
@@ -24,6 +26,7 @@ const toggleSubscription = asyncHandler(async (req, res) => {
 
   if (existingSubscription) {
     await Subscription.findByIdAndDelete(existingSubscription._id);
+      logger.info(`User ${req.user._id} unsubscribed from channel: ${channelId}`); 
     return res
       .status(200)
       .json(
@@ -39,7 +42,7 @@ const toggleSubscription = asyncHandler(async (req, res) => {
     subscriber: req.user._id,
     channel: channelId,
   });
-
+logger.info(`User ${req.user._id} subscribed to channel: ${channelId}`); 
   return res
     .status(200)
     .json(

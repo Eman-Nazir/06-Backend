@@ -1,7 +1,7 @@
 import dotenv from "dotenv";
 import connectDB from "./db/index.js";
 import { app } from "./app.js";
-import { startCronJobs } from "./jobs/cleanupJob.js";
+// import { startCronJobs } from "./jobs/cleanupJob.js";
 import logger from "./utils/logger.js";
 
 dotenv.config();
@@ -12,7 +12,7 @@ connectDB()
   .then(() => {
     app.listen(PORT, () => {
       logger.info(`Server is running at port: ${PORT}`);
-      startCronJobs();
+      // startCronJobs();
     });
   })
   .catch((err) => {
