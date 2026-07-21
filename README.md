@@ -1,4 +1,15 @@
-# Backend Development Journey | #100DaysOfWebDevelopment
+<h1 align="center">Backend Development Journey | #100DaysOfWebDevelopment</h1>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white" />
+  <img src="https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white" />
+  <img src="https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white" />
+  <img src="https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white" />
+  <img src="https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=jsonwebtokens&logoColor=white" />
+  <img src="https://img.shields.io/badge/Stripe-008CDD?style=for-the-badge&logo=stripe&logoColor=white" />
+  <img src="https://img.shields.io/badge/Swagger-85EA2D?style=for-the-badge&logo=swagger&logoColor=black" />
+  <img src="https://img.shields.io/badge/Jest-C21325?style=for-the-badge&logo=jest&logoColor=white" />
+</p>
 
 This repository documents the backend portion of my #100DaysOfWebDevelopment journey. It covers my progression from Node.js fundamentals to building and deploying a production-ready REST API using Express.js, MongoDB, Redis, JWT authentication, Cloudinary, Stripe, Nodemailer, and Swagger.
 
@@ -58,5 +69,4 @@ Each `Day-XX-*` folder is a snapshot of the project at that stage of learning. L
 **Eman Nazir**
 BS Computer Science, University of Agriculture, Faisalabad
 MERN Stack Developer Trainee at ZACoders
-
 Documented publicly as part of a 100 Days of Web Development challenge on LinkedIn.
